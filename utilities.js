@@ -27,9 +27,10 @@ exports.addAllNumbers = numbers => {
 };
 
 exports.calculatePercentage = (total, amount, shouldRound = false) => {
-  let rate =
-    (parseInt(total.replace(",", "")) / parseInt(amount.replace(",", ""))) *
-    100;
+  const totalParsed = parseInt(total.replace(",", ""), 10);
+  const changeParsed = parseInt(amount.replace(",", ""), 10);
+  let rate = (changeParsed / (totalParsed - changeParsed)) * 100;
+
   if(isNaN(rate)) return 0
   rate = rate.toString();
   rate = rate.slice(0, rate.indexOf(".") + 3);
